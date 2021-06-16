@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<conio.h>
+void floodfill(int x,int y,int old,int other_colour)
+{
+     int current;
+     current=getpixel(x,y);
+     if(current==old)
+      {
+                delay(5);
+                putpixel(x,y,other_colour);
+                floodfill(x+1,y,old,other_colour);
+                floodfill(x-1,y,old,other_colour);
+                floodfill(x,y+1,old,other_colour);
+                floodfill(x,y-1,old,other_colour);
+                floodfill(x+1,y+1,old,other_colour);
+                floodfill(x-1,y+1,old,other_colour);
+                floodfill(x+1,y-1,old,other_colour);
+                floodfill(x-1,y-1,old,other_colour);
+       }
+}
+void main()
+{
+  intgd=DETECT,gm;
+  initgraph(&gd,&gm,"");
+  rectangle(35,35,120,120);
+  floodfill(40,40,0,60);
+  getch();
+  closegraph();
+}
